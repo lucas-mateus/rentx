@@ -9,7 +9,7 @@ export default {
     title: "#47474d",
 
     line: "#ebebf0",
-    main: "#dc3617",
+    main: "#DC1637",
     mainLight: "#fdedef",
     success: "#03b252",
 

@@ -1,8 +1,31 @@
 import React from "react";
 import { StatusBar } from "react-native";
+import { Acessory } from "../../components/Acessory";
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
-import { Container, Header, CarImageSlider } from "./styles";
+import {
+  Container,
+  Header,
+  CarImageSlider,
+  Content,
+  Details,
+  Description,
+  CarBrand,
+  CarName,
+  RentDetails,
+  Period,
+  Price,
+  About,
+  AcessoryWrapper,
+} from "./styles";
+
+import SpeedSvg from "../../assets/Speed.svg";
+import GasolineSvg from "../../assets/Gasolina.svg";
+import AcelerateSvg from "../../assets/Up.svg";
+import ExchangeSvg from "../../assets/Câmbio.svg";
+import PowerSvg from "../../assets/Força.svg";
+import PeopleSvg from "../../assets/Pessoas.svg";
+
 export function CarDetails() {
   return (
     <Container>
@@ -19,6 +42,31 @@ export function CarDetails() {
           ]}
         />
       </CarImageSlider>
+      <Content>
+        <Details>
+          <Description>
+            <CarBrand>Lamborguini</CarBrand>
+            <CarName>huracan</CarName>
+          </Description>
+          <RentDetails>
+            <Period>ao dia</Period>
+            <Price>R$ 580</Price>
+          </RentDetails>
+        </Details>
+        <AcessoryWrapper>
+          <Acessory name="380km/h" icon={SpeedSvg} />
+          <Acessory name="3.2s" icon={AcelerateSvg} />
+          <Acessory name="800HP" icon={PowerSvg} />
+          <Acessory name="Gasolina" icon={GasolineSvg} />
+          <Acessory name="Auto" icon={ExchangeSvg} />
+          <Acessory name="2 Pessoas" icon={PeopleSvg} />
+        </AcessoryWrapper>
+        <About>
+          Este é automóvel desportivo. Surgiu do lendário touro de lide
+          indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
+          para quem gosta de acelerar.
+        </About>
+      </Content>
     </Container>
   );
 }

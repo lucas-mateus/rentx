@@ -91,4 +91,5 @@ export const AcessoryWrapper = styled.View`
 export const Footer = styled.View`
   width: 100%;
   padding: 24px 24px ${getBottomSpace() + 24}px;
+  background-color: ${({ theme }) => theme.color.backgroundPrimary};
 `;

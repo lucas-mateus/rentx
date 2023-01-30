@@ -2,9 +2,10 @@ import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  width: 100%;
   flex: 1;
+  width: 100%;
   align-items: center;
+  padding-top: 16px;
   background-color: ${({ theme }) => theme.color.header};
 `;
 
@@ -26,4 +27,5 @@ export const Message = styled.Text`
   font-size: ${RFValue(15)}px;
   color: ${({ theme }) => theme.color.text};
   margin-top: 16px;
+  margin-bottom: 24px;
 `;

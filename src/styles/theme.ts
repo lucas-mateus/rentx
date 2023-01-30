@@ -14,7 +14,7 @@ export default {
     success: "#03b252",
 
     shape: "#e1e1e8",
-    shapeDark: "#292923",
+    shapeDark: "#29292E",
   },
   fonts: {
     primary_400: "Inter_400Regular",

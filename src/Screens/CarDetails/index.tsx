@@ -29,12 +29,15 @@ import ExchangeSvg from "../../assets/Câmbio.svg";
 import PowerSvg from "../../assets/Força.svg";
 import PeopleSvg from "../../assets/Pessoas.svg";
 
-export function CarDetails() {
+export function CarDetails({ navigation }) {
+  function handleSchedule() {
+    navigation.navigate("Schedule");
+  }
   return (
     <Container>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={() => navigation.goBack()} />
       </Header>
       <CarImageSlider>
         <ImageSlider
@@ -71,7 +74,7 @@ export function CarDetails() {
         </About>
       </Content>
       <Footer>
-        <Button title="Escolher período do aluguel" />
+        <Button title="Escolher período do aluguel" onPress={handleSchedule} />
       </Footer>
     </Container>
   );

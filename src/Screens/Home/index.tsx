@@ -5,7 +5,7 @@ import Logo from "../../assets/Logotipo.svg";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Car } from "../../components/Car";
 
-export function Home() {
+export function Home({ navigation }) {
   const carData = {
     brandCar: "audi",
     carName: "RS 5 Coupé",
@@ -15,6 +15,11 @@ export function Home() {
     },
     thumbnail: "https://www.pngmart.com/files/1/Audi-RS5-Red-PNG.png",
   };
+
+  function handleCarDetails() {
+    navigation.navigate("CarDetails");
+  }
+
   return (
     <Container>
       <StatusBar
@@ -27,8 +32,10 @@ export function Home() {
         <TotalCars>Total de 112 carros</TotalCars>
       </Header>
       <CarList
-        data={[1, 2, 3, 4, 5]}
-        renderItem={({ item }) => <Car data={carData} />}
+        data={[1, 2, 3]}
+        renderItem={({ item }) => (
+          <Car data={carData} onPress={handleCarDetails} />
+        )}
         keyExtractor={(item) => String(item)}
       />
     </Container>

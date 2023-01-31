@@ -40,13 +40,17 @@ import PowerSvg from "../../assets/Força.svg";
 import PeopleSvg from "../../assets/Pessoas.svg";
 import { useTheme } from "styled-components";
 
-export function ScheduleDetails() {
+export function ScheduleDetails({ navigation }) {
   const theme = useTheme();
+
+  function handleScheduleConfirmation() {
+    navigation.navigate("ScheduleConfirmation");
+  }
   return (
     <Container>
       <StatusBar barStyle="dark-content" backgroundColor="transparent" />
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={() => navigation.goBack()} />
       </Header>
       <CarImageSlider>
         <ImageSlider
@@ -102,7 +106,11 @@ export function ScheduleDetails() {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" color={theme.color.success} />
+        <Button
+          title="Alugar agora"
+          color={theme.color.success}
+          onPress={handleScheduleConfirmation}
+        />
       </Footer>
     </Container>
   );

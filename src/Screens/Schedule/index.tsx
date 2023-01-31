@@ -17,8 +17,12 @@ import { useTheme } from "styled-components";
 import { Button } from "../../components/Button";
 import { Calendar } from "../../components/Calendar";
 
-export function Schedule() {
+export function Schedule({ navigation }) {
   const theme = useTheme();
+
+  function handleScheduleDetails() {
+    navigation.navigate("ScheduleDetails");
+  }
   return (
     <Container>
       <StatusBar
@@ -27,7 +31,10 @@ export function Schedule() {
         translucent
       />
       <Header>
-        <BackButton color={theme.color.shape} />
+        <BackButton
+          color={theme.color.shape}
+          onPress={() => navigation.goBack()}
+        />
         <Title>
           Escolha uma {`\n`}data de início e {`\n`}fim do aluguel
         </Title>
@@ -48,7 +55,7 @@ export function Schedule() {
         <Calendar />
       </Content>
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleScheduleDetails} />
       </Footer>
     </Container>
   );

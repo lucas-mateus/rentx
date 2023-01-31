@@ -4,11 +4,12 @@ import React from "react";
 interface Props {
   title: string;
   color?: string;
+  onPress: () => void;
 }
 
-export function Button({ title, color, ...rest }: Props) {
+export function Button({ title, color, onPress }: Props) {
   return (
-    <Container {...rest} color={color}>
+    <Container onPress={onPress} color={color}>
       <Title>{title}</Title>
     </Container>
   );

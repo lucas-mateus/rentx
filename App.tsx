@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider } from "styled-components";
 import * as SplashScreen from "expo-splash-screen";
 import {
@@ -12,12 +13,11 @@ import {
   Archivo_500Medium,
   Archivo_600SemiBold,
 } from "@expo-google-fonts/archivo";
-import { Home } from "./src/Screens/Home";
 import theme from "./src/styles/theme";
 
-export default function App() {
-  const [appIsReady, setAppIsReady] = useState(false);
+import { Routes } from "./src/routes";
 
+export default function App() {
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -41,7 +41,9 @@ export default function App() {
     <>
       {isFontsLoaded() ? (
         <ThemeProvider theme={theme}>
-          <Home />
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <Routes />
+          </GestureHandlerRootView>
         </ThemeProvider>
       ) : (
         SplashScreen.preventAutoHideAsync()

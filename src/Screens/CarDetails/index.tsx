@@ -22,14 +22,15 @@ import {
   Footer,
 } from "./styles";
 
-import SpeedSvg from "../../assets/Speed.svg";
-import GasolineSvg from "../../assets/Gasolina.svg";
-import AcelerateSvg from "../../assets/Up.svg";
-import ExchangeSvg from "../../assets/Câmbio.svg";
-import PowerSvg from "../../assets/Força.svg";
-import PeopleSvg from "../../assets/Pessoas.svg";
+import { CarDTO } from "../../dtos/CarDTO";
+import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
 
-export function CarDetails({ navigation }) {
+interface Params {
+  car: CarDTO;
+}
+
+export function CarDetails({ route, navigation }) {
+  const { car } = route.params as Params;
   function handleSchedule() {
     navigation.navigate("Schedule");
   }
@@ -40,38 +41,29 @@ export function CarDetails({ navigation }) {
         <BackButton onPress={() => navigation.goBack()} />
       </Header>
       <CarImageSlider>
-        <ImageSlider
-          imagesUrl={[
-            "https://www.pngmart.com/files/1/Audi-RS5-Red-PNG.png",
-            "https://www.pngmart.com/files/1/Audi-RS5-Red-PNG.png",
-            "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.gratispng.com%2Fbaixar%2Fporsche.html&psig=AOvVaw3vRBrgkdegQq-VypDLHLr2&ust=1674684907320000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCJCms8md4fwCFQAAAAAdAAAAABAJ",
-          ]}
-        />
+        <ImageSlider imagesUrl={car.photos} />
       </CarImageSlider>
       <Content>
         <Details>
           <Description>
-            <CarBrand>Lamborguini</CarBrand>
-            <CarName>huracan</CarName>
+            <CarBrand>{car.brand}</CarBrand>
+            <CarName>{car.name}</CarName>
           </Description>
           <RentDetails>
-            <Period>ao dia</Period>
-            <Price>R$ 580</Price>
+            <Period>{car.rent.period}</Period>
+            <Price>R$ {car.rent.price}</Price>
           </RentDetails>
         </Details>
         <AcessoryWrapper>
-          <Acessory name="380km/h" icon={SpeedSvg} />
-          <Acessory name="3.2s" icon={AcelerateSvg} />
-          <Acessory name="800HP" icon={PowerSvg} />
-          <Acessory name="Gasolina" icon={GasolineSvg} />
-          <Acessory name="Auto" icon={ExchangeSvg} />
-          <Acessory name="2 Pessoas" icon={PeopleSvg} />
+          {car.accessories.map((accessory) => (
+            <Acessory
+              key={accessory.type}
+              name={accessory.name}
+              icon={getAccessoryIcon(accessory.type)}
+            />
+          ))}
         </AcessoryWrapper>
-        <About>
-          Este é automóvel desportivo. Surgiu do lendário touro de lide
-          indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
-          para quem gosta de acelerar.
-        </About>
+        <About>{car.about}</About>
       </Content>
       <Footer>
         <Button title="Escolher período do aluguel" onPress={handleSchedule} />

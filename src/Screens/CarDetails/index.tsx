@@ -32,7 +32,9 @@ interface Params {
 export function CarDetails({ route, navigation }) {
   const { car } = route.params as Params;
   function handleSchedule() {
-    navigation.navigate("Schedule");
+    navigation.navigate("Schedule", {
+      car,
+    });
   }
   return (
     <Container>

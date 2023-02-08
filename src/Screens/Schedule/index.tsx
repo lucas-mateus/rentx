@@ -77,9 +77,9 @@ export function Schedule({ route, navigation }) {
     setRentalPeriod({
       startFormatted: format(
         getPlataformDate(new Date(firstDate)),
-        "yyyy-MM-dd"
+        "dd-MM-yyyy"
       ),
-      endFormatted: format(getPlataformDate(new Date(endDate)), "yyyy-MM-dd"),
+      endFormatted: format(getPlataformDate(new Date(endDate)), "dd-MM-yyyy"),
     });
   }
   return (

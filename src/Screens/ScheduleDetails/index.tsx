@@ -67,6 +67,11 @@ export function ScheduleDetails({ route, navigation }) {
     await api.post(`/schedules_byuser`, {
       user_id: 100,
       car,
+      startDate: format(getPlataformDate(new Date(dates[0])), "dd-MM-yyyy"),
+      endDate: format(
+        getPlataformDate(new Date(dates[dates.length - 1])),
+        "dd-MM-yyyy"
+      ),
     });
 
     api

@@ -64,6 +64,11 @@ export function ScheduleDetails({ route, navigation }) {
       ...dates,
     ];
 
+    await api.post(`/schedules_byuser`, {
+      user_id: 100,
+      car,
+    });
+
     api
       .put(`/schedules_bycars/${car.id}`, {
         id: car.id,

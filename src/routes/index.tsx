@@ -5,6 +5,7 @@ import { Home } from "../Screens/Home";
 import { CarDetails } from "../Screens/CarDetails";
 import { Schedule } from "../Screens/Schedule";
 import { ScheduleDetails } from "../Screens/ScheduleDetails";
+import { MyCars } from "../Screens/MyCars";
 import { ScheduleConfirmation } from "../Screens/ScheduleConfirmation";
 
 export function Routes() {
@@ -18,6 +19,7 @@ export function Routes() {
           <Stack.Screen name="CarDetails" component={CarDetails} />
           <Stack.Screen name="Schedule" component={Schedule} />
           <Stack.Screen name="ScheduleDetails" component={ScheduleDetails} />
+          <Stack.Screen name="MyCars" component={MyCars} />
           <Stack.Screen
             name="ScheduleConfirmation"
             component={ScheduleConfirmation}

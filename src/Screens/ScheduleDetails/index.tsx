@@ -52,12 +52,14 @@ export function ScheduleDetails({ route, navigation }) {
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriod>(
     {} as RentalPeriod
   );
+  const [loading, setLoading] = useState(false);
   const theme = useTheme();
   const { car, dates } = route.params as Params;
 
   const totalRent = Number(dates.length * car.rent.price);
 
   async function handleConfirmRental() {
+    setLoading(true);
     const schedulesByCar = await api.get(`/schedules_bycars/${car.id}`);
     const unavailable_dates = [
       ...schedulesByCar.data.unavailable_dates,
@@ -82,7 +84,10 @@ export function ScheduleDetails({ route, navigation }) {
       .then(() => {
         navigation.navigate("ScheduleConfirmation");
       })
-      .catch(() => Alert.alert("Ops... erro ao agendar carro!"));
+      .catch(() => {
+        setLoading(false);
+        Alert.alert("Ops... erro ao agendar carro!");
+      });
   }
 
   useEffect(() => {
@@ -154,6 +159,8 @@ export function ScheduleDetails({ route, navigation }) {
       <Footer>
         <Button
           title="Alugar agora"
+          enabled={!loading}
+          loading={loading}
           color={theme.color.success}
           onPress={handleConfirmRental}
         />

@@ -1,4 +1,4 @@
-import { Alert, StatusBar } from "react-native";
+import { StatusBar } from "react-native";
 import React, { useState } from "react";
 import { BackButton } from "../../components/BackButton";
 import {
@@ -46,16 +46,12 @@ export function Schedule({ route, navigation }) {
     {} as RentalPeriod
   );
   const { car } = route.params as Params;
+
   function handleScheduleDetails() {
-    if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-      Alert.alert("Selecione a data para alugar!");
-      return;
-    } else {
-      navigation.navigate("ScheduleDetails", {
-        car,
-        dates: Object.keys(markedDates),
-      });
-    }
+    navigation.navigate("ScheduleDetails", {
+      car,
+      dates: Object.keys(markedDates),
+    });
   }
 
   function handleChangeDate(date: DayProps) {
@@ -118,7 +114,11 @@ export function Schedule({ route, navigation }) {
         <Calendar markedDates={markedDates} onDayPress={handleChangeDate} />
       </Content>
       <Footer>
-        <Button title="Confirmar" onPress={handleScheduleDetails} />
+        <Button
+          title="Confirmar"
+          onPress={handleScheduleDetails}
+          enabled={!!rentalPeriod.startFormatted}
+        />
       </Footer>
     </Container>
   );
